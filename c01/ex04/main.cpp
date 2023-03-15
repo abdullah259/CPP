@@ -79,7 +79,6 @@ int main(int argc, char **argv)
         while (pos < line.length())
         {
             size_t found_pos = line.find(second_arg, pos);
-			// std::cout << "this is found pos " << found_pos << " and this is pos " << pos <<std::endl;
             if (found_pos == std::string::npos)
             {
                 // no more occurrences of the substring, copy the rest of the line
@@ -89,12 +88,9 @@ int main(int argc, char **argv)
             else
             {
                 // copy the characters before the occurrence of the substring
-                std::cout << "this is new_line " << pos << "this is " << found_pos - pos << std::endl;
 				new_line += line.substr(pos, found_pos - pos);
-				std::cout << "this is new_line " << new_line << std::endl;
                 // copy the new string in place of the substring
                 new_line += last_arg;
-				std::cout << "this is new_line " << new_line << std::endl;
                 // update the position to continue searching after the substring
                 pos = found_pos + second_arg.length();
             }
