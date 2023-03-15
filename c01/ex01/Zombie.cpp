@@ -2,7 +2,6 @@
 
 Zombie::Zombie()
 {
-	this->name = name;
 	std::cout << this->name << ": Zombie start ..." << std::endl;
 }
 

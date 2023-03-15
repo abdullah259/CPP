@@ -1,4 +1,4 @@
-SRCS = main.cpp
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -6,7 +6,7 @@ CXX = c++
 
 CXXFLAGS = -Werror -Wall -Wextra -std=c++98
 
-NAME = thisIsBrain
+NAME = attack
 	
 all : $(NAME)
 
