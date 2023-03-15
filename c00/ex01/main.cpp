@@ -25,7 +25,6 @@ int		check_empty_input(std:: string *info)
 void	Start_Program(PhoneBook *phonebook)
 {
 	std::string info_contac[5];
-
 	std::cout << "Enter First Name : ";
 	std::getline(std::cin, info_contac[0]);
 	std::cout << "Enter Last Name : ";

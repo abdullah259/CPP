@@ -60,11 +60,6 @@ void	PhoneBook::search()
 		std::cout << "Ctrl D detected, Exiting the program ...." << std::endl;
 		return ;
 	}
-	if(inp.size() == 0 || inp.size() > 1)
-	{
-		std::cout << "Wrong Index" << std::endl;
-		return ;
-	}
 	for(int j = 0; j < (int)inp.size() ;j++)
 	{
 		if(!isdigit(inp[j]))
