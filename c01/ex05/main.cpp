@@ -2,7 +2,10 @@
 
 int main()
 {
-   Harl objj;
+	Harl obj;
 
-   objj.complain("DEBUG"); 
+	obj.complain("DEBUG");
+	obj.complain("INFO");
+	obj.complain("WARNING");
+	obj.complain("ERROR");
 }

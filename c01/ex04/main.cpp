@@ -1,43 +1,7 @@
-// #include <iostream>
-// #include <fstream>
-
-// int main(int arc, char **argv)
-// {
-// 	if (arc != 4)
-// 		std::cout << "Wrong arg number" << std::endl;
-// 	else 
-// 	{
-// 		std::string first_arg = argv[1];
-// 		std::string second_arg = argv[2];
-// 		std::string last_arg = argv[3];
-
-// 		if (!second_arg.size() || !last_arg.size())
-// 		{
-// 			std::cout << "Wrong s1 or s2" << std::endl;
-// 			return (EXIT_FAILURE);
-// 		}
-
-// 		std::ifstream input_file;
-// 		std::ofstream output_file((first_arg += ".replace").c_str());
-
-// 		input_file.open(first_arg);
-// 		if (!input_file) {
-//         	std::cout << "Error opening input file!\n";
-//         	return 0;
-//     	}
-
-
-// 		char c;
-// 		while (input_file >> c)
-// 		{
-// 			output_file << c;
-// 		}
-// 	}
-// }
-
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 int main(int argc, char **argv)
 {
@@ -57,7 +21,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    std::ifstream input_file(first_arg);
+    std::ifstream input_file(first_arg.c_str());
     if (!input_file)
     {
         std::cout << "Error opening input file!\n";

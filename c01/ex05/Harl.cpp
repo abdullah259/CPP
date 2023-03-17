@@ -1,5 +1,16 @@
 #include "Harl.hpp"
 
+Harl::Harl(void)
+{
+	std::cout << "Harl Object Created" << std::endl;
+
+}
+
+Harl::~Harl(void)
+{
+	std::cout << "Harl Object Destoryed" << std::endl;
+}
+
 void	Harl::debug()
 {
 	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!" << std::endl;
@@ -30,8 +41,8 @@ void	Harl::complain(std::string line)
 	void	(Harl::*ptr)() = &Harl::wrong;
 
 	(!line.compare("DEBUG") && (ptr = &Harl::debug));
-	(!line.compare("INFO") && (ptr = &Harl::debug));
-	(!line.compare("WARNING") && (ptr = &Harl::debug));
-	(!line.compare("ERROR") && (ptr = &Harl::debug));
+	(!line.compare("INFO") && (ptr = &Harl::info));
+	(!line.compare("WARNING") && (ptr = &Harl::warning));
+	(!line.compare("ERROR") && (ptr = &Harl::error));
 	(this->*ptr)();
 }
