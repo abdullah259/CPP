@@ -131,11 +131,25 @@ Fixed &Fixed::operator++()
     return *this;
 }
 
+Fixed &Fixed::operator--()
+{
+    --value;
+    return *this;
+}
+
 Fixed Fixed::operator++(int)
 {
     Fixed temp = *this;
 
     value++;
+    return (temp);
+}
+
+Fixed Fixed::operator--(int)
+{
+    Fixed temp = *this;
+
+    value--;
     return (temp);
 }
 

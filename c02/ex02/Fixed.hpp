@@ -34,7 +34,9 @@ public:
     static  Fixed &max(Fixed &lhs, Fixed &rhs);
     static  const Fixed &max(Fixed const  &lhs, Fixed const &rhs);
     Fixed& operator++();
+    Fixed& operator--();
     Fixed operator++(int);
+    Fixed operator--(int);
     int toInt( void ) const;
     float toFloat( void ) const;
     int getRawBits( void ) const;
