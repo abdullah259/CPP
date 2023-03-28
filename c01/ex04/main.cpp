@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     if (!output_file)
     {
         std::cout << "Error opening output file!\n";
+        input_file.close();
         return EXIT_FAILURE;
     }
 
