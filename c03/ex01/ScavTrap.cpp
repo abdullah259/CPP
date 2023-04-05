@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << "ScavTrap Defalut constructors called" << std::endl;
     _name = "Defalut";
@@ -9,7 +9,7 @@ ScavTrap::ScavTrap()
     Attack_damage = 20;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "ScavTrap name constructors called" << std::endl;
     _name = name;

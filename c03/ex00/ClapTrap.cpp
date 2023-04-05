@@ -30,6 +30,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap    &ClapTrap::operator=(const ClapTrap &rhs)
 {
+    std::cout << "ClapTrap copy assignment constructor called" << std::endl;
     if (&rhs == this)
         return (*this);
     Attack_damage = rhs.Attack_damage;
