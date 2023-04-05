@@ -6,7 +6,7 @@ CXX = c++
 
 CXXFLAGS = -Werror -Wall -Wextra -std=c++98
 
-NAME = ex02
+NAME = repetitive
 	
 all : $(NAME)
 

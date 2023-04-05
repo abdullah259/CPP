@@ -11,16 +11,35 @@ ScavTrap::ScavTrap()
 
 ScavTrap::ScavTrap(std::string name)
 {
-    std::cout << "ScavTrap Defalut constructors called" << std::endl;
+    std::cout << "ScavTrap name constructors called" << std::endl;
     _name = name;
     Hit_points = 100;
     Energy_points = 50;
     Attack_damage = 20;
 }
 
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other){
+    std::cout << "ScavTrap copy constructors called" << std::endl;
+    _name = other._name;
+    Hit_points = other.Hit_points;
+    Energy_points = other.Energy_points;
+    Attack_damage = other.Attack_damage;
+}
+
+ScavTrap    &ScavTrap::operator=(const ScavTrap &rhs){
+    std::cout << "ScavTrap copy assignment constructor called" << std::endl;
+    if (&rhs == this)
+        return (*this);
+    _name = rhs._name;
+    Hit_points = rhs.Hit_points;
+    Energy_points = rhs.Energy_points;
+    Attack_damage = rhs.Attack_damage;
+    return (*this);
+}
+
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap Defalut destructor called" << std::endl;
+    std::cout << "ScavTrap destructor called" << std::endl;
 }
 
 void    ScavTrap::attack(const std::string &target)

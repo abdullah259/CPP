@@ -20,7 +20,7 @@ public:
 	~Fixed();  // destoryed
     Fixed &operator=(const Fixed& other); // copy assigned construcotr
 
-    int toInt( void ) const;
+    int toInt( void );
     float toFloat( void ) const;
     int getRawBits( void ) const;
     void setRawBits( int const raw );
