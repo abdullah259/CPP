@@ -9,7 +9,7 @@ FragTrap::FragTrap() : ClapTrap()
     Attack_damage = 30;
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 {
     std::cout << "FragTrap name construction called" << std::endl;
     _name = name;

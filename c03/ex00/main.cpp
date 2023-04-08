@@ -5,11 +5,11 @@ int main()
     ClapTrap player;
 
     player.attack("abdullah");
-    player.takeDamage(5);
+    player.takeDamage(player.get_attack_damge());
     player.attack("mm");
-    player.beRepaired(3);
+    player.beRepaired(player.get_attack_damge());
     player.attack("mm");
-    player.takeDamage(10);
+    player.takeDamage(player.get_attack_damge());
     player.attack("mm");
-    player.beRepaired(9);
+    player.beRepaired(player.get_attack_damge());
 }
