@@ -7,7 +7,11 @@ class Character : public ICharacter
 {
     private:
         std::string name;
-        AMateria    *inventory[4];
+        static const int INVENTORY_SIZE = 4;
+        static const int MAX_UNEQUIPPED_MATERIAS = 4;
+        AMateria    *inventory[INVENTORY_SIZE];
+        AMateria* m_unequippedMaterias[MAX_UNEQUIPPED_MATERIAS];
+        int m_numUnequippedMaterias;
     public:
         Character(void);
         Character(std::string const &name);
