@@ -84,3 +84,20 @@ void Character::unequip(int idx)
 
     inventory[idx] = nullptr;
 }
+
+void Character::use(int idx, ICharacter& target) {
+    // Check if index is valid
+    if (idx < 0 || idx >= 4) {
+        std::cout << "Invalid inventory slot! Could not use." << std::endl;
+        return;
+    }
+
+    // If slot is empty, do nothing
+    if (inventory[idx] == nullptr) {
+        std::cout << "No AMateria object in slot " << idx << ". Could not use." << std::endl;
+        return;
+    }
+
+    // Otherwise, use AMateria object on target
+    inventory[idx]->use(target);
+}

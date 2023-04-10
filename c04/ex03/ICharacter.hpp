@@ -3,10 +3,8 @@
 #include <iostream>
 #include "AMateria.hpp"
 
-class ICharacter : public AMateria 
+class ICharacter
 {
-    protected:
-        std::string _type;
     public:
         virtual ~ICharacter() {}
         virtual std::string const & getName() const = 0;
