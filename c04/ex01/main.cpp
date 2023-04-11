@@ -29,16 +29,6 @@ int main()
 	return 0;
 }
 
-
-// int main() {
-// 	Cat *kadesa = new Cat();
-// 	kadesa->setIdea("Rule the world", 0);
-// 	Cat	herra(*kadesa);
-// 	delete kadesa;
-// 	std::cout << "Idea  = " << herra.getIdea(0) << std::endl;
-
-//     return 0;
-// }
 // int main() {
 //     Dog dog1;
 //     dog1.set_ideas("idea 1", 0);

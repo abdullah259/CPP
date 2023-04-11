@@ -1,103 +1,105 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsarhan <hsarhan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/20 08:36:56 by hsarhan           #+#    #+#             */
+/*   Updated: 2022/10/20 10:06:53 by hsarhan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Character.hpp"
 
-Character::Character() : name("no Name")
+Character::Character(void)
+	:
+	  _name("default")
 {
-    for (int i = 0; i < 4; i++)
-		inventory[i] = NULL;
-    std::cout  << "Character() Default Constructor Called" << std::endl;
+	for (size_t i = 0; i < 4; i++)
+	{
+		_inventory[i] = NULL;
+		_equipped[i] = false;
+	}
 }
 
-Character::Character(const Character &src)
+Character::Character(const std::string &name)
+	: _name(name)
 {
-    *this = src;
-    std::cout  << "Character() Copy Constructor Called" << std::endl;
+	for (size_t i = 0; i < 4; i++)
+	{
+		_inventory[i] = NULL;
+		_equipped[i] = false;
+	}
 }
 
-Character::Character(std::string const &name) : name(name)
+Character::Character(const Character &old)
+	:
+	  _name(old._name)
 {
-    for (int i = 0; i < 4; i++)
-		inventory[i] = NULL;
-    std::cout  << "Character() parm Constructor Called" << std::endl;
+	for (size_t i = 0; i < 4; i++)
+	{
+		delete _inventory[i];
+		_inventory[i] = old._inventory[i];
+		_equipped[i] = old._equipped[i];
+	}
 }
 
 Character &Character::operator=(const Character &rhs)
 {
-    if (this == &rhs)
-        return (*this);
-    this->name = rhs.name;
-    for (int i = 0; i < 4; i++)
-    {
-        delete inventory[i];
-        inventory[i] = rhs.inventory[i];
-    }
-    return *this;
+	if (&rhs == this)
+	{
+		return (*this);
+	}
+	_name = rhs._name;
+	for (size_t i = 0; i < 4; i++)
+	{
+		delete _inventory[i];
+		_inventory[i] = rhs._inventory[i];
+		_equipped[i] = rhs._equipped[i];
+	}
+	return (*this);
 }
 
-std::string const &Character::getName() const {
-    return (this->name);
-}
-
-void Character::equip(AMateria* m)
+Character::~Character(void)
 {
-    if (m == nullptr)
-    {
-        std::cout << "Cannot equip null Materia" << std::endl;
-        return;
-    }
+	for (size_t i = 0; i < 4; i++)
+	{
+		delete _inventory[i];
+	}
+}
 
-    for (int i = 0; i < INVENTORY_SIZE; i++)
-    {
-        if (inventory[i] == nullptr)
-        {
-            inventory[i] = m;
-            return;
-        }
-    }
+const std::string &Character::getName() const
+{
+	return (_name);
+}
 
-    std::cout << "Inventory is full, cannot equip Materia" << std::endl;
+void Character::equip(AMateria *m)
+{
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (_equipped[i] == false)
+		{
+			delete _inventory[i];
+			_inventory[i] = m;
+			_equipped[i] = true;
+			return ;
+		}
+	}
 }
 
 void Character::unequip(int idx)
 {
-    if (idx < 0 || idx >= INVENTORY_SIZE)
-    {
-        std::cout << "Invalid inventory index" << std::endl;
-        return;
-    }
-
-    if (inventory[idx] == nullptr)
-    {
-        std::cout << "No Materia in inventory slot " << idx << std::endl;
-        return;
-    }
-
-    // Save the address of the unequipped Materia
-    if (m_numUnequippedMaterias < MAX_UNEQUIPPED_MATERIAS)
-    {
-        m_unequippedMaterias[m_numUnequippedMaterias] = inventory[idx];
-        m_numUnequippedMaterias++;
-    }
-    else
-    {
-        std::cout << "Maximum number of unequipped Materias reached" << std::endl;
-    }
-
-    inventory[idx] = nullptr;
+	if (idx >= 0 && idx < 4)
+	{
+		_equipped[idx] = false;
+	}
 }
 
-void Character::use(int idx, ICharacter& target) {
-    // Check if index is valid
-    if (idx < 0 || idx >= 4) {
-        std::cout << "Invalid inventory slot! Could not use." << std::endl;
-        return;
-    }
-
-    // If slot is empty, do nothing
-    if (inventory[idx] == nullptr) {
-        std::cout << "No AMateria object in slot " << idx << ". Could not use." << std::endl;
-        return;
-    }
-
-    // Otherwise, use AMateria object on target
-    inventory[idx]->use(target);
+void Character::use(int idx, ICharacter &target)
+{
+	if (idx >= 0 && idx < 4 && _equipped[idx] == true)
+	{
+		_inventory[idx]->use(target);
+	}
 }

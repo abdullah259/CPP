@@ -1,18 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsarhan <hsarhan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/13 11:26:16 by hsarhan           #+#    #+#             */
+/*   Updated: 2022/10/20 10:06:18 by hsarhan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria()
+Cure::Cure(void) : AMateria("cure")
 {
-    this->_type = "cure";
 }
 
-Cure::Cure(std::string const & type) : AMateria("cure")
+Cure::Cure(const Cure &old): AMateria(old)
 {
-    this->_type = type;
-}
-
-Cure::Cure(const Cure &other)
-{
-    this->_type = other._type;
 }
 
 Cure &Cure::operator=(const Cure &rhs)
@@ -25,12 +30,13 @@ Cure::~Cure(void)
 {
 }
 
-Cure    *Cure::clone() const {
-    Cure *new_cure = new Cure();
-    return (new_cure);
+AMateria *Cure::clone() const
+{
+	Cure *clone = new Cure();
+	return (clone);
 }
 
-void    Cure::use(ICharacter& target)
+void Cure::use(ICharacter &target)
 {
-    std::cout << "* heals " << target.getName() << "`s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

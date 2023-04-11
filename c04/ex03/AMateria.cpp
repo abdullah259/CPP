@@ -1,41 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsarhan <hsarhan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 18:53:36 by hsarhan           #+#    #+#             */
+/*   Updated: 2022/10/20 10:06:42 by hsarhan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria(void)
 {
-    _type = "Defalut";
-    std::cout << "AMateria Defalut constructor called" << std::endl;
+	materiaType = "default";
 }
 
-AMateria::AMateria(std::string const &type)
+AMateria::AMateria(const std::string &type)
 {
-    _type = type;
-    std::cout << "AMateria parm constructor called" << std::endl;
+	materiaType = type;
 }
 
-AMateria::AMateria(const AMateria &other)
+AMateria::AMateria(const AMateria &old)
 {
-    _type = other._type;
-    std::cout << "AMateria copy constructor called" << std::endl;
+	materiaType = old.materiaType;
 }
 
 AMateria &AMateria::operator=(const AMateria &rhs)
 {
-    if (this == &rhs)
-        return (*this);
-    _type = rhs._type;
+	(void)rhs;
+	return (*this);
 }
 
 AMateria::~AMateria(void)
 {
-    std::cout << "AMateria destructor Called" << std::endl;
 }
 
-std::string const   &AMateria::getType() const
+const std::string &AMateria::getType() const
 {
-    return (this->_type);
+	return (materiaType);
 }
 
-void    AMateria::use(ICharacter& target)
+void AMateria::use(ICharacter &target)
 {
-    (void)target;
+	(void)target;
 }

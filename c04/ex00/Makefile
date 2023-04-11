@@ -1,4 +1,4 @@
-SRCS = main.cpp Cat.cpp Animal.cpp Dog.cpp
+SRCS = main.cpp Cat.cpp Animal.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 

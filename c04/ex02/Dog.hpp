@@ -17,7 +17,7 @@ class Dog : public Animal
         Dog(const std::string _type);
         Dog(const Dog &other);
         Dog &operator=(const Dog &rhs);
-        ~Dog();
+        virtual ~Dog();
 
         
         void    makeSound() const;

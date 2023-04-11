@@ -1,8 +1,5 @@
 #include "Cat.hpp"
 
-
-#include "Animal.hpp"
-
 Cat::Cat() : Animal()
 {
     type = "Cat";
@@ -11,22 +8,22 @@ Cat::Cat() : Animal()
 
 Cat::Cat(const std::string _type) : Animal(_type)
 {
-    std::cout << "Cat name constructor called" << std::endl;
     type = _type;
+    std::cout << "Cat name constructor called" << std::endl;
 }
 
 Cat::Cat(const Cat &other) : Animal(other)
 {
-    std::cout << "Cat copy Constructor Called" << std::endl;
     type = other.type;
+    std::cout << "Cat copy Constructor Called" << std::endl;
 }
 
 Cat  &Cat::operator=(const Cat &rhs)
 {
-    std::cout << "Cat copy assignment constructor called" << std::endl;
     if (&rhs == this)
         return (*this);
     type = rhs.type;
+    std::cout << "Cat copy assignment constructor called" << std::endl;
     return (*this);
 }
 

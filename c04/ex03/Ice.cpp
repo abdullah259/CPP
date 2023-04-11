@@ -1,18 +1,23 @@
-#include "ICe.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsarhan <hsarhan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/13 10:36:53 by hsarhan           #+#    #+#             */
+/*   Updated: 2022/10/20 10:06:10 by hsarhan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Ice::Ice() : AMateria()
+#include "Ice.hpp"
+
+Ice::Ice(void) : AMateria("ice")
 {
-    this->_type = "cure";
 }
 
-Ice::Ice(std::string const & type) : AMateria("cure")
+Ice::Ice(const Ice &old) :AMateria(old)
 {
-    this->_type = type;
-}
-
-Ice::Ice(const Ice &other)
-{
-    this->_type = other._type;
 }
 
 Ice &Ice::operator=(const Ice &rhs)
@@ -25,12 +30,13 @@ Ice::~Ice(void)
 {
 }
 
-Ice    *Ice::clone() const {
-    Ice *new_cure = new Ice();
-    return (new_cure);
+AMateria *Ice::clone() const
+{
+	Ice *clone = new Ice();
+	return (clone);
 }
 
-void    Ice::use(ICharacter& target)
+void Ice::use(ICharacter &target)
 {
-    std::cout << "* shoots an ice bolt at " << target.getName() << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

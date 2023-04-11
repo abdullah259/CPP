@@ -8,22 +8,22 @@ Dog::Dog() : Animal()
 
 Dog::Dog(const std::string _type) : Animal(_type)
 {
-    std::cout << "Dog name constructor called" << std::endl;
     type = _type;
+    std::cout << "Dog name constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &other) : Animal(other)
 {
-    std::cout << "Dog copy Constructor Called" << std::endl;
     type = other.type;
+    std::cout << "Dog copy Constructor Called" << std::endl;
 }
 
 Dog  &Dog::operator=(const Dog &rhs)
 {
-    std::cout << "Dog copy assignment constructor called" << std::endl;
     if (&rhs == this)
         return (*this);
     type = rhs.type;
+    std::cout << "Dog copy assignment constructor called" << std::endl;
     return (*this);
 }
 
