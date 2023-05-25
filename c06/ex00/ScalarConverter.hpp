@@ -6,10 +6,10 @@
 #include <iomanip>
 #include <stdlib.h>
 
-static  class ScalarConverter
+class ScalarConverter
 {
 private:
-    const std::string &str_type;
+    std::string str_type;
 public:
     ScalarConverter();
     ScalarConverter(std::string _type);
@@ -17,13 +17,7 @@ public:
     ScalarConverter &operator=(const ScalarConverter &rhs);
     ~ScalarConverter();
 
-    static  void    convert(std::string const & str);
+    static  void    convert(std::string str);
 };
 
-ScalarConverter::ScalarConverter(/* args */)
-{
-}
-
-ScalarConverter::~ScalarConverter()
-{
-}
+#endif
