@@ -7,9 +7,11 @@ int main()
         Bureaucrat  bb("Abdullah",150);
         Bureaucrat  cc = bb;
 
+        cc.increGrade();
         cc.decreGrade();
         std::cout << cc.getGrade() << std::endl;
-        std::cout << cc;
+        std::cout << cc << bb;
+        // std::cout << bb;
     }
     catch(const std::exception& e)
     {
