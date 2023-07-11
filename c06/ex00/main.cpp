@@ -8,8 +8,7 @@ int main(int arc, char **argv)
 {
     if (arc == 2)
     {
-        ScalarConverter ll(argv[1]);
-
-        ll.convert(argv[1]);
+        ScalarConverter::convert(argv[1]);
     }
+    return 0;
 }

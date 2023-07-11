@@ -3,22 +3,16 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <iomanip>
 #include <cctype>
+#include <limits>
 #include <stdlib.h>
 
 class ScalarConverter
 {
-private:
-    std::string str_type;
-public:
-    ScalarConverter();
-    ScalarConverter(std::string _type);
-    ScalarConverter(const ScalarConverter &other);
-    ScalarConverter &operator=(const ScalarConverter &rhs);
-    ~ScalarConverter();
-
-    static  void    convert(std::string str);
+    public:
+        static  void    convert(const std::string &str);
 };
 
 #endif
