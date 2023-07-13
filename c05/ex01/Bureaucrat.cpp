@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 		throw GradeTooHighException();
 	else
 		_grade = grade;
-    std::cout << "Named Bureaucrat constructor called" << std::endl;
+    std::cout << "Name Bureaucrat constructor called" << std::endl;
 }
 
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat& rhs)

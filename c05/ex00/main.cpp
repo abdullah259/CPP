@@ -4,7 +4,7 @@ int main()
 {
     try
     {
-        Bureaucrat  bb("Abdullah",150);
+        Bureaucrat  bb("Abdullah",1);
         Bureaucrat  cc = bb;
 
         cc.increGrade();

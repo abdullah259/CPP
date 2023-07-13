@@ -23,7 +23,7 @@ int main()
 	AForm	*ff;
 	Intern	in;
 
-	ff = in.makeForm("Shrubbery Creation", "abdullah");
+	ff = in.makeForm("Shrubbery", "abdullah");
 
 	Bureaucrat ber1("Moa", 1);
 	if(ff)
@@ -31,6 +31,8 @@ int main()
 		ber1.signForm(*ff);
 		ber1.executeForm(*ff);
 	}
+	else 
+		std::cout << "the makeForm function return NULL" << std::endl;
 	// Cannot execute without signing
 	// b.executeForm(shrubForm);
 

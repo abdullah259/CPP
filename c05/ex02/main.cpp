@@ -4,15 +4,6 @@
 #include "PresidentialPardonForm.hpp"
 int main()
 {
-    // try
-    // {
-    //     Bureaucrat                     bb("Abdullah",80);
-    //     PresidentialPardonForm        ff("Abdullah form");
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cout << e.what() << std::endl;
-    // }
     Bureaucrat b = Bureaucrat("bob", 137);
 	Bureaucrat c = Bureaucrat("christina", 1);
 	ShrubberyCreationForm shrubForm("home");

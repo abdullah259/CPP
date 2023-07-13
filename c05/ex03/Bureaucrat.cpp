@@ -40,15 +40,18 @@ Bureaucrat::~Bureaucrat(void)
 
 void    Bureaucrat::increGrade()
 {
-    if (_grade == -1)
+    if (_grade - 1 < 1)
+    {
+        _grade -= 1;
         throw GradeTooHighException();
+    }
     else
         _grade -= 1;
 }
 
 void    Bureaucrat::decreGrade()
 {
-    if (_grade > 150)
+    if (_grade + 1 > 150)
         throw GradeTooLowException();
     else
         _grade += 1;
