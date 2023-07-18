@@ -1,5 +1,27 @@
 #include "ScalarConverter.hpp"
 
+ScalarConverter::ScalarConverter(void)
+{
+}
+
+
+ScalarConverter::ScalarConverter(const std::string name)
+{
+    (void)name;
+}
+
+
+ScalarConverter::ScalarConverter(ScalarConverter const & src)
+{
+	*this = src;
+}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
+
 int     is_float(char c)
 {
     if (c == 'f')
@@ -92,7 +114,6 @@ void    ScalarConverter::convert(const std::string &str)
     }
     if (!isdigit(str[0]) && i == 1)
     {
-        std::cout << "fff99" << std::endl;
         int a;
         double b;
         float c;
@@ -115,7 +136,6 @@ void    ScalarConverter::convert(const std::string &str)
     }
     else if (j)
     {
-        std::cout << "fff11" << std::endl;
         float   b;
         int     i;
         double  c;
@@ -134,14 +154,19 @@ void    ScalarConverter::convert(const std::string &str)
                 std::cout << "Non displayable" << std::endl;
         }
         else
-            std::cout << "char : " << "Impossible" << std::endl;   
+        {
+            std::cout << "char : " << "Impossible" << std::endl;
+            std::cout << "int : " << "Impossible" << std::endl;
+            std::cout << "float : " << "Impossible" << std::endl;
+            std::cout << "double : " << "Impossible" << std::endl; 
+            return; 
+        }
         std::cout << "int : " << i << std::endl;
         std::cout << "float : " << b << "f" <<std::endl;
         std::cout << "double : " << c << std::endl;
     }
     else if (j == 0 && strlen(str.c_str()) == i && i > 1)
     {
-        std::cout << "fff55" << std::endl;
         float   b;
         int     i;
         double  c;
@@ -160,37 +185,17 @@ void    ScalarConverter::convert(const std::string &str)
                 std::cout << "char : " << "Non displayable" << std::endl;
         }
         else
-            std::cout << "char : " << "Impossible" << std::endl;   
+        {
+            std::cout << "char : " << "Impossible" << std::endl;
+            std::cout << "int : " << "Impossible" << std::endl;
+            std::cout << "float : " << "Impossible" << std::endl;
+            std::cout << "double : " << "Impossible" << std::endl; 
+            return; 
+        }
         std::cout << "int : " << i << std::endl;
         std::cout << "float : " << b << "f" <<std::endl;
         std::cout << "double : " << c << std::endl;   
     }
-    // else if(isNumeric(str))
-    // {
-    //     std::cout << "fff44" << std::endl;
-    //     float   b;
-    //     int     i;
-    //     double  c;
-    //     char    s;
-
-    //     i = static_cast<int>(atoi(str.c_str()));
-    //     c = static_cast<double>(i);
-    //     b = static_cast<float>(i);
-
-    //     if (i >= std::numeric_limits<char>::min() && i <= std::numeric_limits<char>::max())
-    //     {
-    //         s = static_cast<char>(i);
-    //         if (isprint(s))
-    //             std::cout << "char : '" << s << "'" << std::endl;
-    //         else
-    //             std::cout << "char : " << "Non displayable" << std::endl;
-    //     }
-    //     else
-    //         std::cout << "char : " << "Impossible" << std::endl;   
-    //     std::cout << "int : " << i << std::endl;
-    //     std::cout << "float : " << b << "f" <<std::endl;
-    //     std::cout << "double : " << c << std::endl;  
-    // }
     else
         std::cout << "it is invalid input please only numbers or charcters" << std::endl;
 }

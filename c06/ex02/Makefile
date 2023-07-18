@@ -1,4 +1,4 @@
-SRCS = main.cpp utils.cpp A.cpp B.cpp C.cpp Base.cpp
+SRCS = main.cpp utils.cpp Base.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
