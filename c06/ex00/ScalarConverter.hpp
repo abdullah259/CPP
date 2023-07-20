@@ -11,6 +11,12 @@
 
 class ScalarConverter
 {
+    private:
+        ScalarConverter(void);
+        ScalarConverter(const std::string name);
+        ScalarConverter(const ScalarConverter &old);
+        ScalarConverter &operator=(const ScalarConverter &rhs);
+        ~ScalarConverter(void);
     public:
         static  void    convert(const std::string &str);
 };

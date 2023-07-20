@@ -1,4 +1,4 @@
-SRCS = main.cpp utils.cpp Base.cpp
+SRCS = main.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -6,7 +6,7 @@ CXX = c++
 
 CXXFLAGS = -Werror -Wall -Wextra -std=c++98
 
-NAME = ex02
+NAME = ex01
 	
 all : $(NAME)
 
@@ -19,3 +19,4 @@ fclean: clean
 	rm -rf $(NAME)
 	
 re:	fclean all
+

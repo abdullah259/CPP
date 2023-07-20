@@ -1,5 +1,27 @@
 #include "ScalarConverter.hpp"
 
+ScalarConverter::ScalarConverter(void)
+{
+}
+
+
+ScalarConverter::ScalarConverter(const std::string name)
+{
+    (void)name;
+}
+
+
+ScalarConverter::ScalarConverter(ScalarConverter const & src)
+{
+	*this = src;
+}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
+
 int     is_float(char c)
 {
     if (c == 'f')
@@ -92,7 +114,6 @@ void    ScalarConverter::convert(const std::string &str)
     }
     if (!isdigit(str[0]) && i == 1)
     {
-        std::cout << "fff99" << std::endl;
         int a;
         double b;
         float c;
@@ -115,7 +136,6 @@ void    ScalarConverter::convert(const std::string &str)
     }
     else if (j)
     {
-        std::cout << "fff11" << std::endl;
         float   b;
         int     i;
         double  c;
@@ -135,11 +155,11 @@ void    ScalarConverter::convert(const std::string &str)
         }
         else
         {
-            std::cout << "char : " << "Impossible" << std::endl;   
-            std::cout << "int : " << "Impossible" << std::endl;   
-            std::cout << "float : " << "Impossible" << std::endl;   
-            std::cout << "double : " << "Impossible" << std::endl;
-            return ;
+            std::cout << "char : " << "Impossible" << std::endl;
+            std::cout << "int : " << "Impossible" << std::endl;
+            std::cout << "float : " << "Impossible" << std::endl;
+            std::cout << "double : " << "Impossible" << std::endl; 
+            return; 
         }
         std::cout << "int : " << i << std::endl;
         std::cout << "float : " << b << "f" <<std::endl;
@@ -147,14 +167,12 @@ void    ScalarConverter::convert(const std::string &str)
     }
     else if (j == 0 && strlen(str.c_str()) == i && i > 1)
     {
-        std::cout << "ddd55" << std::endl;
         float   b;
         int     i;
         double  c;
         char    s;
 
         c = atof(str.c_str());
-        std::cout << c <<std::endl;
         b = static_cast<float>(c);
         i = static_cast<int>(c);
 
@@ -168,11 +186,11 @@ void    ScalarConverter::convert(const std::string &str)
         }
         else
         {
-            std::cout << "char : " << "Impossible" << std::endl;   
-            std::cout << "int : " << "Impossible" << std::endl;   
-            std::cout << "float : " << "Impossible" << std::endl;   
-            std::cout << "double : " << "Impossible" << std::endl;
-            return ;
+            std::cout << "char : " << "Impossible" << std::endl;
+            std::cout << "int : " << "Impossible" << std::endl;
+            std::cout << "float : " << "Impossible" << std::endl;
+            std::cout << "double : " << "Impossible" << std::endl; 
+            return; 
         }
         std::cout << "int : " << i << std::endl;
         std::cout << "float : " << b << "f" <<std::endl;
