@@ -48,7 +48,6 @@ int main()
     iter(numbers,3,printElem);
     
     Cat cats[5];
-
     iter(cats, 5, callSound);
 }
 
