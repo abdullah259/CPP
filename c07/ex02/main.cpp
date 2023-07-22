@@ -10,19 +10,19 @@ int main()
         {
             intArray2[i] = i;
         }
-        std::cout << intArray2[32] << std::endl;
+        std::cout << intArray2[2] << std::endl;
 
         std::cout << "---------------------------"<< std::endl;
 
         Array<int> intArra;
-        intArra = intArray2;
+        // intArra = intArray2;
         std::cout << intArra.size() << std::endl;
-        for(unsigned int i = 0; i < 33 ; i++)
-        {
-            intArra[i] = i+1;
-        }
-        std::cout << intArra[32] << std::endl;
-        std::cout << intArray2[32] << std::endl;
+        // for(unsigned int i = 0; i < 33 ; i++)
+        // {
+        //     intArra[i] = i+1;
+        // }
+        std::cout << intArra[0] << std::endl;
+        std::cout << intArray2[4] << std::endl;
     }
     catch(const std::exception& e)
     {
