@@ -48,7 +48,13 @@ public:
         }
         return (*this);
     }
-    T	&operator[](unsigned int idx) 
+    T	&operator[](unsigned int idx)  
+    {
+        if(idx >= 0 && static_cast<unsigned int>(idx) < this->len)
+            return (element[idx]);
+        throw IndexOutOfBoundsException();
+    }
+    const T	&operator[](unsigned int idx)  const
     {
         if(idx >= 0 && static_cast<unsigned int>(idx) < this->len)
             return (element[idx]);
