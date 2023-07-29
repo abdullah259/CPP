@@ -1,4 +1,4 @@
-SRCS = main.cpp
+SRCS = main.cpp Span.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -6,7 +6,7 @@ CXX = c++
 
 CXXFLAGS = -Werror -Wall -Wextra -std=c++98
 
-NAME = ex00
+NAME = ex01
 	
 all : $(NAME)
 

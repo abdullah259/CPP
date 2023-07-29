@@ -18,6 +18,7 @@ int main()
         std::cout << "Vector : ";
         std::vector<int>::iterator it = easyfind(v1, num);
         std::cout << *it << std::endl;
+        // std::cout << v1.begin() << std::endl;
     }
     catch (std::exception &e)
     {
