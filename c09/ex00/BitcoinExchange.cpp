@@ -5,52 +5,48 @@ BitcoinExchange::BitcoinExchange(std::string file_input) : fileStream(file_input
 {
     if (!fileStream.is_open()) {
         std::cerr << "Error: could not open file " << file_input << std::endl;
-        // Optionally, you can throw an exception here to handle the error further up the call stack.
     }
     if (!this->database.is_open())
     {
-        std::cerr << "Error: could not open file " << file_input << std::endl;
+        std::cerr << "Error: could not open DB file " << std::endl;
     }
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+{
+    this->data = other.data;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
+{
+    if (this != &rhs)
+        this->data = rhs.data;
+    return *this;
 }
 
 BitcoinExchange::~BitcoinExchange()
 {
     fileStream.close();
+    database.close();
 }
 
-size_t  BitcoinExchange::getSize()
-{
-    return (this->data.size());
-}
-
-void    BitcoinExchange::print()
-{
-    std::vector<std::pair<std::string, float> >::iterator it;
-    for (it = data.begin(); it != data.end(); ++it) {
-        std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-    }
-}
-
-int BitcoinExchange::check_if_valid()
+void BitcoinExchange::fill_Map_DB()
 {
     std::string line;
     std::string header = "date,exchange_rate";
-    int i = 0;
+
     while (std::getline(database, line)) {
-            if (line == header) {
-            continue; // Skip the header line
-        }
+        if (line == header) 
+            continue;
         size_t commaPos = line.find(',');
         if (commaPos != std::string::npos)
         {
             std::string befor = line.substr(0, commaPos);
             std::string after = line.substr(commaPos + 1);
             float number = atof(after.c_str());
-            data.push_back(std::make_pair(befor,number));
-            i++;
+            this->data[befor] = number;
         }
     }
-    return i;
 }
 
 int isValidDate(std::string line)
@@ -75,11 +71,7 @@ int     isValidNum(float num)
     return 1;
 }
 
-bool compareDates(const std::pair<std::string, double>& element, const std::string& date) {
-    return element.first < date;
-}
-
-int check_line(std::string line)
+int BitcoinExchange::check_line(std::string line)
 {
     std::string date;
     std::string num_str;
@@ -96,11 +88,15 @@ int check_line(std::string line)
         if (isValidNum(number) == 2)
         {
             std::cout << "Error: not a positive number." << std::endl;
+            fileStream.close();
+            database.close();
             return 0;
         }
         else if (isValidNum(number) == 3)
         {
             std::cout << "Error: too large a number." << std::endl;
+                        fileStream.close();
+            database.close();
             return 0;
         }
         else
@@ -108,16 +104,7 @@ int check_line(std::string line)
     }
     else 
     {
-        // if (i == 1)
-        //     std::cout << "should be like this Year-Month-Day" << std::endl;
-        // else if (i == 2)
-        //     std::cout << "the Year is not in our Date Range in DB" << std::endl;
-        // else if (i == 3)
-        //     std::cout << "the Month is not Correct" << std::endl;
-        // else if (i == 4)
-        //     std::cout << "the Days is not Correct" << std::endl;
-        // else if (i == 5)
-            std::cout << "Error: bad input => " << date << std::endl;
+        std::cout << "Error: bad input => " << date << std::endl;
         return 0;
     }
 }
@@ -125,17 +112,17 @@ int check_line(std::string line)
 void    BitcoinExchange::print_all()
 {
     std::string line;
-    std::vector<std::pair<std::string, float> >::iterator it;
+
     std::string header = "date | value";
     std::string inputDate;
     float DataNum;
     float number_input;
+    fileStream.clear();
+    fileStream.seekg(0, std::ios::beg);
     while (std::getline(fileStream, line))
     {
-        if (line == header) {
-            continue; // Skip the header line
-        }
-
+        if (line == header) 
+            continue;
         if (check_line(line))
         {
             size_t pipePos = line.find(' ');
@@ -148,11 +135,13 @@ void    BitcoinExchange::print_all()
                 number_input = atof(after.c_str());
 
                 bool found = false;
-
-                for (size_t i = 0; i < data.size(); i++) {
-                    if (data[i].first == inputDate) {
+                std::map<std::string, double>::iterator it;
+                for (it = data.begin(); it != data.end(); ++it) 
+                {
+                    if (it->first == inputDate)
+                    {
                         found = true;
-                        DataNum = data[i].second;
+                        DataNum = it->second;
                         break;
                     }
                 }
@@ -160,7 +149,7 @@ void    BitcoinExchange::print_all()
                     std::cout << inputDate << "=> " << number_input << " = " << number_input * DataNum << std::endl;
                 else
                 {
-                    it = std::lower_bound(data.begin(), data.end(), inputDate,compareDates);
+                    it = data.lower_bound(inputDate);
                     if (it != data.begin()) 
                         --it; // Move the iterator one step back to get the lower bound
                     if (it != data.end())
