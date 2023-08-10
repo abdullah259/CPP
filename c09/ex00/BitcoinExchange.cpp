@@ -6,7 +6,7 @@ BitcoinExchange::BitcoinExchange(std::string file_input) : fileStream(file_input
     if (!fileStream.is_open()) {
         std::cerr << "Error: could not open file " << file_input << std::endl;
     }
-    if (!this->database.is_open())
+    if (!database.is_open())
     {
         std::cerr << "Error: could not open DB file " << std::endl;
     }
@@ -51,9 +51,10 @@ void BitcoinExchange::fill_Map_DB()
 
 int isValidDate(std::string line)
 {
+
     if (line.length() != 10 || line[4] != '-' || line[7] != '-')
 		return 1;
-    if (std::atoi(line.substr(0,4).c_str()) < 2009 || std::atoi(line.substr(0, 4).c_str()) > 2021)
+    if (std::atoi(line.substr(0,4).c_str()) < 2009 || std::atoi(line.substr(0, 4).c_str()) > 2022)
         return 2;
     if (std::atoi(line.substr(5,2).c_str()) < 1 || std::atoi(line.substr(5, 2).c_str()) > 12)
         return 3;
@@ -74,39 +75,99 @@ int     isValidNum(float num)
 int BitcoinExchange::check_line(std::string line)
 {
     std::string date;
+    size_t l;
     std::string num_str;
     float number;
+    size_t len_normal;
     int i;
     size_t len = line.find('|');
-    date = line.substr(0, len - 1);
-    num_str = line.substr(len + 1);
+    len_normal = len + 1;
+    size_t not_newline = line.find_first_not_of(" ");
+    if (not_newline != std::string::npos)
+    {
+        if (len != std::string::npos)
+        {
+            if (len > 11)
+            {
+                len--;
+                while (len)
+                {
+                    if (line[len] != ' ')
+                        break;
+                    len--;
+                }
+                date = line.substr(0, len + 1 );
+            }
+            else {
+                date = line.substr(0, len - 1 );
+            }
+        }
+        else 
+            date = line.substr(0, len);
+        bool inSpaces = false;
+        std::string result;
+        for (size_t i = len_normal; i < line.size(); i++)
+        {
+            if (isspace(line[i])) 
+            {
+                if (!inSpaces) {
+                    inSpaces = true;
+                    result += ' '; // Add a single space for the sequence of spaces
+                }
+            } 
+            else {
+                inSpaces = false;
+                result += line[i];
+            }
+        }
+        if (!result.empty() && result[result.size() - 1] == ' ') 
+            result.resize(result.size() - 1);
+        size_t start = result.find_first_not_of(" ");
+        if (start != std::string::npos) {
+            result = result.substr(start);
+            l = 0;
+        } else {
+            l = -1;
+            result.clear(); // If only spaces are left, clear the string
+        }
 
-    number = atof(num_str.c_str());
-    i = isValidDate(date);
-    if (i == 5)
-    {
-        if (isValidNum(number) == 2)
+        while (l < result.size())
         {
-            std::cout << "Error: not a positive number." << std::endl;
-            fileStream.close();
-            database.close();
+            if (isdigit(result[l]) || result[l] == '.' || result[l] == '-')
+                l++;
+            else
+                break;
+        }
+        if (l == result.size())
+        {
+            num_str = result;
+            number = std::atof(num_str.c_str());
+        }    
+
+        i = isValidDate(date);
+        if (i == 5 && l == result.size())
+        {
+            if (isValidNum(number) == 2)
+            {
+                std::cout << "Error: not a positive number." << std::endl;
+                return 0;
+            }
+            else if (isValidNum(number) == 3)
+            {
+                std::cout << "Error: too large a number." << std::endl;
+                return 0;
+            }
+            else
+                return 1;
+        }
+        else 
+        {
+            std::cout << "Error: bad input => " << date << std::endl;
             return 0;
         }
-        else if (isValidNum(number) == 3)
-        {
-            std::cout << "Error: too large a number." << std::endl;
-                        fileStream.close();
-            database.close();
-            return 0;
-        }
-        else
-            return 1;
     }
-    else 
-    {
-        std::cout << "Error: bad input => " << date << std::endl;
+    else
         return 0;
-    }
 }
 
 void    BitcoinExchange::print_all()

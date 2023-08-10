@@ -50,7 +50,8 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &copy){
 }
 
 PmergeMe::~PmergeMe()
-{}
+{
+}
 
 
 void    PmergeMe::fill()

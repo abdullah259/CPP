@@ -16,6 +16,11 @@ int    check_Is_Digit(char **argv)
             {
                 j++;
             }
+            else if (argv[i][j] == '-')
+            {
+                std::cout << "the input must be only positive number" << std::endl;
+                return 0;
+            }
             else
             {
                 std::cout << "the input must be only number" << std::endl;
@@ -46,13 +51,5 @@ int main(int arc, char **argv)
         }
         PmergeMe merg = PmergeMe(allNumbers);
     }
-    // PmergeMe merg = PmergeMe(allNumbers);
-    // for (size_t i = 0; i < allNumbers.size(); ++i) {
-    //     std::cout << "Sequence " << i + 1 << ": ";
-    //     for (size_t j = 0; j < allNumbers[i].size(); ++j) {
-    //         std::cout << allNumbers[i][j] << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
 
 }
